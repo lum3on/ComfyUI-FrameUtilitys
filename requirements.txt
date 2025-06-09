@@ -1,0 +1,12 @@
+# ComfyUI Frame Utility Requirements
+# 
+# This package leverages ComfyUI's existing dependencies and requires no additional packages.
+# All functionality is built using PyTorch and standard Python libraries already included with ComfyUI.
+#
+# Core dependencies (provided by ComfyUI):
+# - torch>=1.13.0
+# - torchvision>=0.14.0
+# - numpy>=1.20.0
+# - PIL (Pillow)>=8.0.0
+#
+# No additional dependencies required!

@@ -1,0 +1,985 @@
+{
+  "id": "216c5b58-e530-48a1-928e-c572f92416d5",
+  "revision": 0,
+  "last_node_id": 27,
+  "last_link_id": 40,
+  "nodes": [
+    {
+      "id": 18,
+      "type": "VHS_LoadVideo",
+      "pos": [
+        -232.43482971191406,
+        23.639259338378906
+      ],
+      "size": [
+        247.455078125,
+        310
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            21,
+            27
+          ]
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "video_info",
+          "type": "VHS_VIDEOINFO",
+          "links": [
+            35
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.5.18",
+        "Node name for S&R": "VHS_LoadVideo",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": {
+        "video": "10556689-uhd_4096_2160_25fps (2).mp4",
+        "force_rate": 0,
+        "custom_width": 0,
+        "custom_height": 0,
+        "frame_load_cap": 81,
+        "skip_first_frames": 0,
+        "select_every_nth": 1,
+        "format": "AnimateDiff",
+        "choose video to upload": "image",
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "10556689-uhd_4096_2160_25fps (2).mp4",
+            "type": "input",
+            "format": "video/mp4",
+            "force_rate": 0,
+            "custom_width": 0,
+            "custom_height": 0,
+            "frame_load_cap": 81,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 19,
+      "type": "GetImageSize+",
+      "pos": [
+        46.56864929199219,
+        57.16659927368164
+      ],
+      "size": [
+        159.50155639648438,
+        66
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            25,
+            33
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            26,
+            34
+          ]
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_essentials",
+        "ver": "1.1.0",
+        "Node name for S&R": "GetImageSize+",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 23,
+      "type": "VHS_VideoInfo",
+      "pos": [
+        54.05772399902344,
+        185.7208251953125
+      ],
+      "size": [
+        225.59765625,
+        206
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video_info",
+          "type": "VHS_VIDEOINFO",
+          "link": 35
+        }
+      ],
+      "outputs": [
+        {
+          "name": "source_fps🟨",
+          "type": "FLOAT",
+          "links": [
+            36,
+            37
+          ]
+        },
+        {
+          "name": "source_frame_count🟨",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "source_duration🟨",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "source_width🟨",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "source_height🟨",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "loaded_fps🟦",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "loaded_frame_count🟦",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "loaded_duration🟦",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "loaded_width🟦",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "loaded_height🟦",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.5.18",
+        "Node name for S&R": "VHS_VideoInfo",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": {}
+    },
+    {
+      "id": 20,
+      "type": "FrameExtender",
+      "pos": [
+        248.83316040039062,
+        103.11685180664062
+      ],
+      "size": [
+        284.4609375,
+        294
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source_video",
+          "type": "IMAGE",
+          "link": 27
+        },
+        {
+          "name": "additional_frames",
+          "type": "IMAGE",
+          "link": 24
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 25
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 26
+        }
+      ],
+      "outputs": [
+        {
+          "name": "extended_video",
+          "type": "IMAGE",
+          "links": [
+            30,
+            39
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FrameExtender",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        81,
+        512,
+        512,
+        "nearest",
+        "keep proportion",
+        "always",
+        0,
+        5,
+        false,
+        true
+      ]
+    },
+    {
+      "id": 27,
+      "type": "FrameExtenderAdvanced",
+      "pos": [
+        269.47967529296875,
+        41.84804916381836
+      ],
+      "size": [
+        289.5425720214844,
+        414
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 1,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "source_video",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "additional_frames",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "extended_video",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FrameExtenderAdvanced",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        -1,
+        512,
+        424,
+        "bilinear",
+        "keep proportion",
+        "always",
+        0,
+        "none",
+        0,
+        1,
+        "smooth",
+        false,
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "id": 22,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        595.8894653320312,
+        65.4754867553711
+      ],
+      "size": [
+        262.9917907714844,
+        334
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 39
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "frame_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "frame_rate"
+          },
+          "link": 36
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.5.18",
+        "Node name for S&R": "VHS_VideoCombine",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": {
+        "frame_rate": 8,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00005.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 25,
+            "workflow": "AnimateDiff_00005.png",
+            "fullpath": "C:\\Users\\RAIIN Studios\\Documents\\protable\\ComfyUI\\temp\\AnimateDiff_00005.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 25,
+      "type": "PreviewImage",
+      "pos": [
+        433.8963317871094,
+        549.3120727539062
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 40
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.40",
+        "Node name for S&R": "PreviewImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 24,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1246.3790283203125,
+        50.37545394897461
+      ],
+      "size": [
+        262.9917907714844,
+        334
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 38
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "frame_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "frame_rate"
+          },
+          "link": 37
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.5.18",
+        "Node name for S&R": "VHS_VideoCombine",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": {
+        "frame_rate": 8,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00006.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 25,
+            "workflow": "AnimateDiff_00006.png",
+            "fullpath": "C:\\Users\\RAIIN Studios\\Documents\\protable\\ComfyUI\\temp\\AnimateDiff_00006.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 21,
+      "type": "FrameReplacer",
+      "pos": [
+        904.1486206054688,
+        57.8386116027832
+      ],
+      "size": [
+        295.1015625,
+        366
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source_video",
+          "type": "IMAGE",
+          "link": 30
+        },
+        {
+          "name": "replacement_frames",
+          "type": "IMAGE",
+          "link": 32
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 33
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 34
+        }
+      ],
+      "outputs": [
+        {
+          "name": "modified_video",
+          "type": "IMAGE",
+          "links": [
+            38
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FrameReplacer",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        24,
+        1,
+        512,
+        512,
+        "nearest",
+        "keep proportion",
+        "always",
+        0,
+        false,
+        0,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        -253.76731872558594,
+        510.4249572753906
+      ],
+      "size": [
+        315,
+        314.0000305175781
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            17,
+            32
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.40",
+        "Node name for S&R": "LoadImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "ComfyUI_temp_syruu_00028_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "WanVideoVACEStartToEndFrame",
+      "pos": [
+        90.05553436279297,
+        510.3457946777344
+      ],
+      "size": [
+        329.9634704589844,
+        142
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "start_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "name": "end_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "control_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "inpaint_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            24,
+            40
+          ]
+        },
+        {
+          "name": "masks",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-WanVideoWrapper",
+        "ver": "9e8978731b8e653664d10d258eb1792a46f2bf17",
+        "Node name for S&R": "WanVideoVACEStartToEndFrame",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        13,
+        0.5
+      ]
+    }
+  ],
+  "links": [
+    [
+      17,
+      4,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      21,
+      18,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      17,
+      0,
+      20,
+      1,
+      "IMAGE"
+    ],
+    [
+      25,
+      19,
+      0,
+      20,
+      2,
+      "INT"
+    ],
+    [
+      26,
+      19,
+      1,
+      20,
+      3,
+      "INT"
+    ],
+    [
+      27,
+      18,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      30,
+      20,
+      0,
+      21,
+      0,
+      "IMAGE"
+    ],
+    [
+      32,
+      4,
+      0,
+      21,
+      1,
+      "IMAGE"
+    ],
+    [
+      33,
+      19,
+      0,
+      21,
+      2,
+      "INT"
+    ],
+    [
+      34,
+      19,
+      1,
+      21,
+      3,
+      "INT"
+    ],
+    [
+      35,
+      18,
+      3,
+      23,
+      0,
+      "VHS_VIDEOINFO"
+    ],
+    [
+      36,
+      23,
+      0,
+      22,
+      4,
+      "FLOAT"
+    ],
+    [
+      37,
+      23,
+      0,
+      24,
+      4,
+      "FLOAT"
+    ],
+    [
+      38,
+      21,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      39,
+      20,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      40,
+      17,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Frame Extension Workflow",
+      "bounding": [
+        -271.25579833984375,
+        -44.89432907104492,
+        1898.5384521484375,
+        864.3344116210938
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "ds": {
+      "scale": 0.5054470284992943,
+      "offset": [
+        759.0503300459826,
+        186.15427899212514
+      ]
+    },
+    "links_added_by_ue": [],
+    "frontendVersion": "1.21.7",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
