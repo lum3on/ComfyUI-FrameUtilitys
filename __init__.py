@@ -13,16 +13,22 @@ try:
     from .frame_extender import FrameExtender
     from .frame_extender_advanced import FrameExtenderAdvanced
     from .frame_replacer import FrameReplacer
+    from .frame_repeater import FrameRepeater
+    from .frame_clipper import FrameClipper
 except ImportError:
     from frame_extender import FrameExtender
     from frame_extender_advanced import FrameExtenderAdvanced
     from frame_replacer import FrameReplacer
+    from frame_repeater import FrameRepeater
+    from frame_clipper import FrameClipper
 
 # Node class mappings for ComfyUI registration
 NODE_CLASS_MAPPINGS = {
     "FrameExtender": FrameExtender,
     "FrameExtenderAdvanced": FrameExtenderAdvanced,
     "FrameReplacer": FrameReplacer,
+    "FrameRepeater": FrameRepeater,
+    "FrameClipper": FrameClipper,
 }
 
 # Display names for the ComfyUI interface
@@ -30,6 +36,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "FrameExtender": "Frame Extender 🎬",
     "FrameExtenderAdvanced": "Frame Extender Advanced 🎭",
     "FrameReplacer": "Frame Replacer ✂️",
+    "FrameRepeater": "Frame Repeater 🔄",
+    "FrameClipper": "Frame Clipper ✂️",
 }
 
 # Export for ComfyUI
