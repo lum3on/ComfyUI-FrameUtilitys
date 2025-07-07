@@ -26,6 +26,21 @@ Professional-grade frame manipulation tools for ComfyUI, providing advanced vide
 - **Flexible Modes**: Loop or extend replacement frames as needed
 - **Length Preservation**: Maintain original video length option
 
+### 🔄 **Frame Repeater**
+- **Flexible Selection**: Repeat any batch of frames from anywhere in the video
+- **Smart Positioning**: Negative indexing for end-relative frame selection
+- **Output Modes**: Extract repeated frames only or insert into full video
+- **Ping-Pong Effects**: Reverse repeated frames for seamless loops
+- **Smooth Blending**: Optional transition frames for natural repetition
+- **Memory Efficient**: Chunk processing for large sequences
+
+### ✂️ **Frame Clipper**
+- **Simple Clipping**: Clean frame cutting with precise frame count control
+- **Flexible Start**: Choose starting frame position for clipping
+- **Lightweight**: Minimal processing overhead for basic trimming
+- **Batch Support**: Handles any video length efficiently
+- **No Resizing**: Preserves original frame dimensions and quality
+
 ### 🔧 **Advanced Resizing Features**
 - **Multiple Methods**: stretch, keep proportion, fill/crop, pad
 - **Smart Conditions**: always, downscale if bigger, upscale if smaller, if different
@@ -117,6 +132,56 @@ git clone https://github.com/yourusername/ComfyUI-FrameUtillity.git
 - Fix specific frames in a sequence
 - Create frame-accurate edits
 
+### Frame Repeater 🔄
+
+**Category**: `image/video`
+
+**Inputs**:
+- `source_video` (IMAGE): Source video sequence to process
+- `start_frame` (INT): Starting frame for repetition (-10000 to 10000, negative values count from end)
+- `frame_count` (INT): Number of frames to repeat (1-1000)
+- `repeat_times` (INT): How many times to repeat the frame batch (1-100)
+- `output_mode` (COMBO): "extract_only" returns just repeated frames, "insert_into_video" returns full video
+- `insert_position` (INT): Where to insert repeated frames (-1 = end, 0 = beginning)
+- `width` (INT): Target width for frame resizing (64-8192, step 8)
+- `height` (INT): Target height for frame resizing (64-8192, step 8)
+- `interpolation` (COMBO): Interpolation method (nearest, bilinear, bicubic, area, lanczos)
+- `method` (COMBO): Resizing method (stretch, keep proportion, fill / crop, pad)
+- `condition` (COMBO): When to resize (always, downscale if bigger, upscale if smaller, if different)
+- `multiple_of` (INT): Round dimensions to multiple of this value (0 = disabled)
+- `blend_frames` (INT, optional): Number of transition frames for smooth blending (0-50)
+- `reverse_repeat` (BOOLEAN, optional): Reverse the repeated frames for ping-pong effect
+- `memory_efficient` (BOOLEAN, optional): Process in chunks to save memory
+
+**Outputs**:
+- `repeated_video` (IMAGE): Video with repeated frame sequences
+
+**Use Cases**:
+- Create emphasis effects by repeating key moments
+- Generate seamless loops from video segments
+- Extend specific scenes for timing adjustments
+- Create ping-pong effects with reverse repetition
+- Extract and repeat action sequences
+
+### Frame Clipper ✂️
+
+**Category**: `image/video`
+
+**Inputs**:
+- `source_video` (IMAGE): Source video sequence to clip
+- `frame_count` (INT): Number of frames to keep (1-10000)
+- `start_frame` (INT, optional): Starting frame index (0 = from beginning, 0-10000)
+
+**Outputs**:
+- `clipped_video` (IMAGE): Clipped video sequence
+
+**Use Cases**:
+- Trim videos to specific lengths
+- Extract segments from longer sequences
+- Remove unwanted beginning or ending frames
+- Create shorter clips for processing efficiency
+- Simple frame-count-based video cutting
+
 ### Frame Extender Advanced 🎭
 
 **Category**: `image/video`
@@ -206,12 +271,35 @@ LoadImage -> FrameExtenderAdvanced (blend_mode="crossfade", blend_frames=10, tra
 LoadImage -> FrameExtenderAdvanced (blend_mode="dissolve", fade_edges=True, reverse_additional=True) -> SaveImage
 ```
 
+### Frame Repetition for Emphasis
+```
+LoadImage -> FrameRepeater (start_frame=-10, frame_count=5, repeat_times=3, output_mode="extract_only") -> SaveImage
+```
+
+### Loop Creation with Ping-Pong Effect
+```
+LoadImage -> FrameRepeater (start_frame=20, frame_count=15, repeat_times=2, reverse_repeat=True, blend_frames=3) -> SaveImage
+```
+
+### Simple Video Trimming
+```
+LoadImage -> FrameClipper (frame_count=60, start_frame=30) -> SaveImage
+```
+
+### Complex Workflow: Clip, Repeat, and Extend
+```
+LoadImage -> FrameClipper (frame_count=100) -> FrameRepeater (start_frame=-20, repeat_times=2) -> FrameExtender -> SaveImage
+```
+
 ## Performance Tips
 
 1. **Memory Efficiency**: Enable `memory_efficient` for videos >100 frames
 2. **Resolution Matching**: Use `bilinear` for best quality/speed balance
 3. **Blending**: Use moderate blend frame counts (3-10) for smooth transitions
 4. **Batch Processing**: Process multiple short clips rather than one very long clip
+5. **Frame Repetition**: Use `extract_only` mode in FrameRepeater for faster processing when you only need the repeated frames
+6. **Simple Clipping**: Use FrameClipper for basic trimming - it's the most efficient for simple cuts
+7. **Workflow Order**: Clip first, then repeat/extend for optimal performance: `Clip -> Repeat -> Extend`
 
 ## Troubleshooting
 
@@ -230,6 +318,14 @@ LoadImage -> FrameExtenderAdvanced (blend_mode="dissolve", fade_edges=True, reve
 - Check `target_frame` is within video length
 - Verify `replace_count` doesn't exceed available frames
 
+**"Invalid start_frame for repetition"**
+- Ensure `start_frame` + `frame_count` doesn't exceed video length
+- Use negative values to count from end (e.g., -10 for 10th frame from end)
+
+**"No frames to clip"**
+- Check that `frame_count` is less than source video length
+- Verify `start_frame` is within video bounds
+
 ## License
 
 MIT License - See LICENSE file for details.
@@ -239,6 +335,13 @@ MIT License - See LICENSE file for details.
 Contributions welcome! Please submit issues and pull requests on GitHub.
 
 ## Version History
+
+- **v1.1.0**: Enhanced release with new utility nodes
+  - **NEW**: FrameRepeater: Professional frame repetition with flexible positioning and ping-pong effects
+  - **NEW**: FrameClipper: Simple and efficient video trimming by frame count
+  - **ENHANCED**: FrameExtender: Added motion-aware blending for smoother transitions
+  - All existing nodes: Improved performance and memory efficiency
+  - Extended documentation with comprehensive examples
 
 - **v1.0.0**: Initial release
   - FrameExtender: Flexible frame extension with smart blending
