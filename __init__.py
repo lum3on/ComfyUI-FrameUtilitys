@@ -18,6 +18,7 @@ try:
     from .frame_clipper import FrameClipper
     from .git_installer import GitInstaller
     from .wavelet_color_fix import WaveletColorFix
+    from .multiply_sigmas import MultiplySigmas
 except ImportError:
     from frame_extender import FrameExtender
     from frame_extender_advanced import FrameExtenderAdvanced
@@ -26,6 +27,7 @@ except ImportError:
     from frame_clipper import FrameClipper
     from git_installer import GitInstaller
     from wavelet_color_fix import WaveletColorFix
+    from multiply_sigmas import MultiplySigmas
 
 # Node class mappings for ComfyUI registration
 NODE_CLASS_MAPPINGS = {
@@ -36,6 +38,7 @@ NODE_CLASS_MAPPINGS = {
     "FrameClipper": FrameClipper,
     "GitInstaller": GitInstaller,
     "WaveletColorFix": WaveletColorFix,
+    "MultiplySigmas": MultiplySigmas,
 }
 
 # Display names for the ComfyUI interface
@@ -47,6 +50,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "FrameClipper": "Frame Clipper 📹",
     "GitInstaller": "Git Repository Installer 📦",
     "WaveletColorFix": "Wavelet Color Fix",
+    "MultiplySigmas": "Multiply Sigmas (stateless)",
 }
 
 # Export for ComfyUI
